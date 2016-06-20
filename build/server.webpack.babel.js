@@ -4,6 +4,7 @@ import config from '../config'
 import StartServerPlugin from 'start-server-webpack-plugin'
 import externals from 'webpack-node-externals'
 import webpack from 'webpack'
+import 'source-map-support/register'
 
 export default merge(baseWebpackConfig, {
   entry: {
@@ -16,7 +17,7 @@ export default merge(baseWebpackConfig, {
     filename: '[name].js'
   },
   externals: [externals()],
-  devtool: 'inline-sourcemap',
+  devtool: 'source-map',
   plugins: [
     new webpack.DefinePlugin({
       'process.env': config.dev.env
@@ -26,7 +27,9 @@ export default merge(baseWebpackConfig, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
-    new StartServerPlugin()
+    new StartServerPlugin(),
+    new webpack.BannerPlugin('require("source-map-support").install();',
+      { raw: true, entryOnly: false }),
   ],
   target: 'async-node',
 })

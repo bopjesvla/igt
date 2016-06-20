@@ -4,8 +4,10 @@ import webpack from 'webpack'
 import config from '../config'
 import proxyMiddleware from 'http-proxy-middleware'
 var webpackConfig = process.env.NODE_ENV === 'testing'
-  ? require('./prod.webpack')
-  : require('./dev.webpack')
+  ? require('./prod.webpack').default
+  : require('./dev.webpack').default
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpackHotMiddleware from 'webpack-hot-middleware'
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
@@ -16,7 +18,7 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 var compiler = webpack(webpackConfig)
 
-var devMiddleware = require('webpack-dev-middleware')(compiler, {
+var devMiddleware = webpackDevMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath,
   stats: {
     colors: true,
@@ -24,7 +26,7 @@ var devMiddleware = require('webpack-dev-middleware')(compiler, {
   }
 })
 
-var hotMiddleware = require('webpack-hot-middleware')(compiler)
+var hotMiddleware = webpackHotMiddleware(compiler)
 // force page reload when html-webpack-plugin template changes
 compiler.plugin('compilation', function (compilation) {
   compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {

@@ -5,14 +5,16 @@
   "author": "Bob",
   "private": true,
   "scripts": {
-    "dev": "webpack --config build/server.webpack",
+    "dev": "webpack --config build/server.webpack.babel.js",
     "build": "node build/build.js",
     "test": ""
   },
   "dependencies": {
     "babel-runtime": "^6.0.0",
+    "source-map-support": "^0.4.0",
     "start-server-webpack-plugin": "^2.0.1",
-    "vue": "^1.0.21"
+    "vue": "^1.0.21",
+    "webpack-node-externals": "^1.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",

@@ -5,7 +5,7 @@
   "author": "Bob",
   "private": true,
   "scripts": {
-    "dev": "webpack --config build/server.webpack.babel.js",
+    "dev": "webpack --watch --config build/server.webpack.babel.js",
     "build": "node build/build.js",
     "test": ""
   },

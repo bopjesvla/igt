@@ -9,6 +9,7 @@ import 'source-map-support/register'
 export default merge(baseWebpackConfig, {
   entry: {
     app: [
+      // 'webpack/hot/poll?1000',
       './build/dev-server.js' 
     ]
   },

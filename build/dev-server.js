@@ -35,8 +35,13 @@ compiler.plugin('compilation', function (compilation) {
   })
 })
 
+if (module.hot) {
+  module.hot.accept()
+}
+
+console.log("HEYA")
 // proxy api requests
-Object.keys(proxyTable).forEach(function (context) {
+Object.keys(proxyTable).forEach(function(context) {
   var options = proxyTable[context]
   if (typeof options === 'string') {
     options = { target: options }

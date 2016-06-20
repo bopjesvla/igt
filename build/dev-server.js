@@ -1,8 +1,8 @@
-var path = require('path')
-var express = require('express')
-var webpack = require('webpack')
-var config = require('../config')
-var proxyMiddleware = require('http-proxy-middleware')
+import path from 'path'
+import express from 'express'
+import webpack from 'webpack'
+import config from '../config'
+import proxyMiddleware from 'http-proxy-middleware'
 var webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./prod.webpack')
   : require('./dev.webpack')

@@ -1,9 +1,9 @@
-var path = require('path')
-var config = require('../config')
-var utils = require('./utils')
+import path from 'path'
+import config from '../config'
+import utils from './utils'
 var projectRoot = path.resolve(__dirname, '../')
 
-module.exports = {
+export default {
   entry: {
     app: './src/main.js'
   },
@@ -13,7 +13,7 @@ module.exports = {
     filename: '[name].js'
   },
   resolve: {
-    extensions: ['', '.js', '.vue'],
+    extensions: ['', '.babel.js', '.js', '.vue'],
     fallback: [path.join(__dirname, '../node_modules')],
     alias: {
       'src': path.resolve(__dirname, '../src'),

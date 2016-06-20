@@ -1,16 +1,16 @@
-var config = require('../config')
-var webpack = require('webpack')
-var merge = require('webpack-merge')
-var utils = require('./utils')
-var baseWebpackConfig = require('./base.webpack')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+import config from '../config'
+import webpack from 'webpack'
+import merge from 'webpack-merge'
+import utils from './utils'
+import baseWebpackConfig from './base.webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
   baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
 })
 
-module.exports = merge(baseWebpackConfig, {
+export default merge(baseWebpackConfig, {
   module: {
     loaders: utils.styleLoaders()
   },

@@ -5,7 +5,7 @@ var projectRoot = path.resolve(__dirname, '../')
 
 export default {
   entry: {
-    app: './src/main.js'
+    app: './client/main.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -16,9 +16,9 @@ export default {
     extensions: ['', '.babel.js', '.js', '.vue'],
     fallback: [path.join(__dirname, '../node_modules')],
     alias: {
-      'src': path.resolve(__dirname, '../src'),
-      'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components')
+      'client': path.resolve(__dirname, '../client'),
+      'assets': path.resolve(__dirname, '../client/assets'),
+      'components': path.resolve(__dirname, '../client/components')
     }
   },
   resolveLoader: {
@@ -30,6 +30,7 @@ export default {
         test: /\.vue$/,
         loader: 'vue'
       },
+      // server.webpack relies on this being the second loader
       {
         test: /\.js$/,
         loader: 'babel',

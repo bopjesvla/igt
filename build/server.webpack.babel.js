@@ -4,12 +4,20 @@ import config from '../config'
 import StartServerPlugin from 'start-server-webpack-plugin'
 import externals from 'webpack-node-externals'
 import webpack from 'webpack'
-import 'source-map-support/register'
+import {rm} from 'shelljs'
+
+let poll = 'webpack/hot/poll?1000'
+
+rm('-rf', 'dist')
+
+let babelLoader = baseWebpackConfig.module.loaders[1]
+delete babelLoader.loader
+babelLoader.loaders = ['monkey-hot', 'babel']
 
 export default merge(baseWebpackConfig, {
   entry: {
     app: [
-      // 'webpack/hot/poll?1000',
+      poll,
       './build/dev-server.js' 
     ]
   },
@@ -17,7 +25,9 @@ export default merge(baseWebpackConfig, {
     path: config.build.serverRoot,
     filename: '[name].js'
   },
-  externals: [externals()],
+  externals: [externals({
+    whitelist: [poll]
+  })],
   devtool: 'source-map',
   plugins: [
     new webpack.DefinePlugin({
@@ -29,8 +39,8 @@ export default merge(baseWebpackConfig, {
     new webpack.NoErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new StartServerPlugin(),
-    new webpack.BannerPlugin('require("source-map-support").install();',
-      { raw: true, entryOnly: false }),
+    // new webpack.BannerPlugin('require("source-map-support").install();',
+      // { raw: true, entryOnly: false }),
   ],
   target: 'async-node',
 })

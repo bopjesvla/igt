@@ -8,6 +8,7 @@ var webpackConfig = process.env.NODE_ENV === 'testing'
   : require('./dev.webpack').default
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
+import api from '../api'
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
@@ -35,11 +36,8 @@ compiler.plugin('compilation', function (compilation) {
   })
 })
 
-if (module.hot) {
-  module.hot.accept()
-}
+app.use("/api", api);
 
-console.log("HEYA")
 // proxy api requests
 Object.keys(proxyTable).forEach(function(context) {
   var options = proxyTable[context]
@@ -70,3 +68,7 @@ module.exports = app.listen(port, function (err) {
   }
   console.log('Listening at http://localhost:' + port + '\n')
 })
+// 
+// if (module.hot) {
+//   module.hot.accept()
+// }

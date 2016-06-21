@@ -18,7 +18,7 @@ export default merge(baseWebpackConfig, {
   entry: {
     app: [
       poll,
-      './build/dev-server.js' 
+      './api.js' 
     ]
   },
   output: {

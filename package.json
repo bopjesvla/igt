@@ -5,7 +5,10 @@
   "author": "Bob",
   "private": true,
   "scripts": {
-    "dev": "webpack --hot --inline --watch --config build/server.webpack.babel.js",
+    "clean": "rm -rf dist",
+    "dev": "npm run clean && npm run dev:client & npm run dev:server",
+	"dev:client": "webpack-dev-server --config build/dev.webpack.babel.js",
+	"dev:server": "webpack --hot --inline --watch --config build/server.webpack.babel.js",
     "build": "node build/build.js",
     "test": ""
   },
@@ -15,6 +18,7 @@
     "source-map-support": "^0.4.0",
     "start-server-webpack-plugin": "^2.0.1",
     "vue": "^1.0.21",
+    "webpack-dev-server": "^1.14.1",
     "webpack-node-externals": "^1.2.0"
   },
   "devDependencies": {

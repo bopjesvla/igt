@@ -19,7 +19,8 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    port: 8081,
+	clientPort: 8080, 
+    serverPort: 8081,
     proxyTable: {}
   }
 }

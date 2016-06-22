@@ -30,5 +30,18 @@ export default merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true
     })
-  ]
+  ],
+  devServer: {
+    host: '0.0.0.0',
+    hot: true,
+    inline: true,
+    stats: {
+      chunks: false,
+    },
+    proxy: {
+      '/api/*': {
+        target: 'http://localhost:' + config.dev.serverPort,
+      }
+    }
+  }
 })

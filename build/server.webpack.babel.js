@@ -28,5 +28,5 @@ export default merge(baseWebpackConfig, {
     new webpack.BannerPlugin('require("source-map-support").install();',
       { raw: true, entryOnly: false }),
   ],
-  target: 'async-node',
+  target: 'async-node'
 })

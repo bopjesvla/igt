@@ -6,14 +6,16 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf dist",
-    "dev": "npm run clean && npm run dev:client & npm run dev:server",
-    "dev:client": "webpack-dev-server --host 0.0.0.0 --config build/dev.webpack.babel.js",
+    "dev": "npm run clean && npm run dev:hz & npm run dev:server & npm run dev:client",
+    "dev:client": "webpack-dev-server --config build/dev.webpack.babel.js",
     "dev:server": "webpack --watch --config build/server.webpack.babel.js",
+	"dev:hz": "hz serve --dev --token-secret dev",
     "build": "node build/build.js",
     "test": ""
   },
   "dependencies": {
     "babel-runtime": "^6.0.0",
+    "horizon": "^1.1.3",
     "monkey-hot-loader": "0.0.3",
     "reload-server-webpack-plugin": "^1.0.1",
     "source-map-support": "^0.4.0",

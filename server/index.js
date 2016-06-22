@@ -3,7 +3,7 @@ import api from './api'
 import config from '../config'
 
 console.log("GDSFHT")
-var port = process.env.PORT || config.dev.port
+var port = process.env.PORT || config.dev.serverPort
 
 let app = express()
 
